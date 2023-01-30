@@ -67,35 +67,42 @@
 
     {% block content %}{% endblock %}
 
-
     <!-- Pié de página -->
     <footer class="footer text-faded text-center py-5">
       <div class="container">
         <p class="m-0">
-            <a href="#" class="link">
+          {% if LINK_TWITTER %}
+            <a href="{{LINK_TWITTER}}" class="link">
               <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
               </span>
             </a>
-            <a href="#" class="link">
+            {% endif %}
+            {% if LINK_FACEBOOK %}
+            <a href=" {{LINK_FACEBOOK}} " class="link">
               <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
               </span>
             </a>
-            <a href="#" class="link">
+            {% endif %}
+            {% if LINK_INSTAGRAM %}
+            <a href=" {{LINK_INSTAGRAM}} " class="link">
               <span class="fa-stack fa-lg">
                 <i class="fa fa-circle fa-stack-2x"></i>
                 <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
               </span>
             </a>
+            {% endif %}
         </p>
-        <p class="m-0 mbt">
-            <a href="{% url 'sample' %}" class="link">Política de privacidad</a> ·
-            <a href="{% url 'sample' %}" class="link">Aviso legal</a> ·
-            <a href="{% url 'sample' %}" class="link">Cookies</a>
-        </p>
+        <!-- Cargamos nuestra librería donde se encuentra nuestros tags propios -->
+        {% load pages_extras %}
+        <!-- Llamamos nuestro nuevo tag y le asignamos un nombre para que se transforme en una lista porque de momento es un queryset-->
+        {% get_page_list as page_list %}
+        {% for page in page_list %}        
+            <a href=" {% url 'sample_page' page.id page.title|slugify %} " class="link"> {{page.title}} </a> {% if not forloop.last %}·{% endif %}
+        {% endfor %}
         <p class="m-0 mbt1">&copy; La Caffettiera 2018</p>
       </div>
     </footer>

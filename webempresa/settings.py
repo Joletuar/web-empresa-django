@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-*fh+4)g@5dkkk$5sozvet%@k&wtnuivj7=wtql@dil6&dyk!%^
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+CSRF_TRUSTED_ORIGINS = ['https://joletuar-potential-couscous-r54vxwpqg742g9r-8000.preview.app.github.dev']
 
 # Application definition
 
@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'core',
+    'pages.apps.PagesConfig',
     'services.apps.ServicesConfig',
+    'social.apps.SocialConfig',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +67,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # Se extiende incluyendo nuestra función definida en processors de la app social
+                'social.processors.ctx_dict',
             ],
         },
     },
