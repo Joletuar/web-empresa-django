@@ -25,6 +25,8 @@ urlpatterns = [
     path('sample/', include('pages.urls')),
 ]
 
+# Procedimiento necesario para hacer que el servidor de django pueda mostrar archivos media
+# Solo funciona si el DEBUG está activado
 if settings.DEBUG:
     from django.conf.urls.static import static
     urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
