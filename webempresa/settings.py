@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'core',
+    'contact',
+    # Instalamos la app del editor
+    'ckeditor',
     'pages.apps.PagesConfig',
     'services.apps.ServicesConfig',
     'social.apps.SocialConfig',
@@ -133,3 +136,26 @@ MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Ckeditor
+# Vamos a cambiar las configuraciones del ckeditor
+CKEDITOR_CONFIGS = {
+    'default': {
+        # Aquí especificamos que campos o que configuración se debe de mostrar en la barra de herramientas
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source']
+        ]
+    }
+}
+
+# Enviar correos
+
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '713914a28ed2b0'
+EMAIL_HOST_PASSWORD = 'c78f2296a160ce'
+EMAIL_PORT = '2525'

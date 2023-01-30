@@ -23,6 +23,7 @@ urlpatterns = [
     path('services/', include('services.urls')),
     path('blog/', include('blog.urls')),
     path('sample/', include('pages.urls')),
+    path('contact/', include('contact.urls')),
 ]
 
 # Procedimiento necesario para hacer que el servidor de django pueda mostrar archivos media

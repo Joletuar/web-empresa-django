@@ -18,27 +18,46 @@
               </h2>
 
               <!-- Formulario de contacto -->
-              <form>
+              <!-- Si usamos form.as_p nos muestra el formulario como parrafos-->
+              <!-- Si usamos form.as_table nos muestra el formulario como tabla, pero se requiere que estpe dentro de una etiqueta table -->
+              <!-- Si usamos form.as_ul nos muestra el formulario como lista, pero se requiere que esté dentro de una etiqueta ul-->
+              {% if 'ok' in request.GET %}
+                <p><b>Su mensaje ha sido enviado correctamente</b></p>
+              {% endif %}
+
+              <!-- Formulario automático generado por django -->
+              <!-- En el atributo action se indica en que página se debe de validar los datos enviados del formulario o a donde se deben de enviar -->
+              <!-- Cuando es POST oculta los datos ya que esto se envían en la barra url-->
+              <!--<form action="" method="POST">
+                {% csrf_token %}
+                <table>
+                  {{form.as_table}}
+                </table>
+                <input type="submit" value="Enviar">
+              </form>-->
+
+              <form action="" method="POST">
+                {% csrf_token %}
                   <div class="form-group">
                       <label>Nombre *</label>
                       <div class="input-group">
-                          <input type="text" class="form-control">
+                          {{form.name}} <!-- Usamos el campos de tipo input que genera django -->
                       </div>
+                      {{form.name.errors}} <!-- Mensaje de error -->
                   </div>
                   <div class="form-group">
                       <label>Email *</label>
                       <div class="input-group">
-                          <input type="text" class="form-control">
+                          {{form.email}}
                       </div>
-                      <ul class="errorlist">
-                          <li>El email no es correcto.</li>
-                      </ul>
+                      {{form.email.errors}}
                   </div>
                   <div class="form-group">
                       <label>Mensaje *</label>
                       <div class="input-group">
-                          <textarea class="form-control"></textarea>
+                          {{form.content}}
                       </div>
+                      {{form.content.errors}}
                   </div>
                   <div class="text-center">
                       <input type="submit" class="btn btn-primary btn-block py-2" value="Enviar">
