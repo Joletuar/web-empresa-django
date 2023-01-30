@@ -126,7 +126,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+# Se especifica el directorio/carpeta donde se guardarán los archivos multimedia
 MEDIA_URL = '/media/'
+# Se especifica la ruta donde se encuentra el directorio 
 MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
 
 
