@@ -14,9 +14,17 @@
               <h2 class="section-heading mb-4">
                 <span class="section-heading-lower"> {{page.title|linebreaks}} </span>
               </h2>
+              <!-- Con |safe le indicas a django que interprete código html -->
               <div class="section-content">
-                {{page.content}}
+                {{page.content|safe}}
+                <!-- Usamos esta variable de contexto global -->
+                <!-- Usamos el método is_authenticated de la variabe user para saber si el usuario está logeado -->
               </div>
+              {% if user.is_authenticated %}
+              <!-- Plantilla: 'admin:App_Model_Action' obj.id -->
+              <!-- 'admin:pages_page_change' page.id -->
+                <a href=" {% url 'admin:pages_page_change' page.id %} ">Editar</a>
+              {% endif %}
             </div>
           </div>
         </div>
